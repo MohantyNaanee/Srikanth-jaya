@@ -139,38 +139,112 @@
         object-fit: cover; /* Ensures the image covers the area of the frame */
       }
       .countdown {
-        font-size: 1.8rem;
-        margin: 20px 0;
+        font-size: 5vw; /* Default font size adjusts based on viewport width */
+        margin: 20px auto; /* Auto left-right margin for centering */
+        padding: 10px; /* Padding to prevent text from touching edges */
         color: var(--gold);
         font-weight: bold;
-      }
-
-      .timer {
+        text-align: center;
         display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 20px 0;
+        justify-content: space-evenly; /* Evenly spaces the boxes */
+        gap: 10px; /* Adds space between countdown boxes */
+        flex-wrap: wrap; /* Wraps items to the next line if there's no space */
+        max-width: 95%; /* Ensures the countdown stays within the screen, 5% margin on both sides */
       }
 
-      .box {
-        background: rgba(255, 255, 255, 0.8);
-        padding: 20px;
-        border: 1px solid var(--gold);
-        border-radius: 5px;
+      /* For small tablets or larger devices */
+      @media (max-width: 768px) {
+        .countdown {
+          font-size: 6vw; /* Adjusts font size for smaller devices */
+        }
       }
 
-      .box span {
-        font-size: 2rem;
+      /* For smaller smartphones (portrait mode) */
+      @media (max-width: 480px) {
+        .countdown {
+          font-size: 8vw; /* Increases font size to ensure readability on small screens */
+        }
+        .box {
+          flex: 1 1 30%; /* Each box takes up 30% of the screen width on smaller devices */
+        }
+      }
+
+      /* For very small screens (e.g., narrow Android devices) */
+      @media (max-width: 320px) {
+        .countdown {
+          font-size: 10vw; /* Further increases font size for very small screens */
+        }
+        .box {
+          flex: 1 1 45%; /* Each box takes up 45% of the screen width */
+        }
+      }
+      section {
+        margin: 20px auto; /* Centers the section and provides spacing */
+        padding: 10px; /* Padding for inner spacing */
+        max-width: 95%; /* Ensures the map does not overflow */
+      }
+
+      /* Style for the iframe map */
+      iframe {
+        width: 100%; /* Ensures the map is responsive */
+        max-width: 100%; /* Prevents it from overflowing the container */
+        height: 300px; /* Keeps a consistent height */
+        border: 0; /* Removes border around iframe */
+        margin: 0 0; /* Centers the iframe */
+        display: block; /* Ensures the iframe is block-level element for centering */
+      }
+
+      @media (max-width: 768px) {
+        iframe {
+          height: 250px; /* Slightly reduce map height for smaller screens */
+        }
+      }
+
+      @media (max-width: 480px) {
+        iframe {
+          height: 200px; /* Further reduce map height for mobile devices */
+        }
+      }
+
+      .countdown {
+        font-size: 5vw; /* Default font size adjusts based on viewport width */
+        margin: 20px auto; /* Auto left-right margin for centering */
+        padding: 10px; /* Padding to prevent text from touching edges */
         color: var(--gold);
+        font-weight: bold;
+        text-align: center;
+        display: flex;
+        justify-content: space-evenly; /* Evenly spaces the boxes */
+        gap: 10px; /* Adds space between countdown boxes */
+        flex-wrap: wrap; /* Wraps items to the next line if there's no space */
+        max-width: 95%; /* Ensures the countdown stays within the screen, 5% margin on both sides */
       }
 
-      .card-box {
-        background: rgba(255, 255, 255, 0.75);
-        padding: 60px 20px;
-        border: 1px solid var(--gold);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        margin: 40px auto;
+      /* For small tablets or larger devices */
+      @media (max-width: 768px) {
+        .countdown {
+          font-size: 6vw; /* Adjusts font size for smaller devices */
+        }
+      }
+
+      /* For smaller smartphones (portrait mode) */
+      @media (max-width: 480px) {
+        .countdown {
+          font-size: 8vw; /* Increases font size to ensure readability on small screens */
+        }
+        .box {
+          flex: 1 1 30%; /* Each box takes up 30% of the screen width on smaller devices */
+        }
+      }
+
+      /* For very small screens (e.g., narrow Android devices) */
+      @media (max-width: 320px) {
+        .countdown {
+          font-size: 10vw; /* Further increases font size for very small screens */
+        }
+        .box {
+          flex: 1 1 45%; /* Each box takes up 45% of the screen width */
+        }
       }
 
       input,
@@ -372,7 +446,7 @@
     <!-- COUNTDOWN BOXES -->
     <section class="text-center">
       <h2 class="title">Countdown to Event</h2>
-      <div class="timer">
+      <div class="countdown d-flex justify-content-center align-items-center">
         <div class="box"><span id="d">00</span><br />Days</div>
         <div class="box"><span id="h">00</span><br />Hours</div>
         <div class="box"><span id="m">00</span><br />Minutes</div>
@@ -561,7 +635,7 @@
       <img
         src="band.gif"
         alt="Jai Shree Ram"
-        style="width: 100%; height: 35vh; display: block; margin: 0 auto"
+        style="width: 100%; height: 30vh; display: block; margin: 0 auto"
       />
     </footer>
 
