@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="te">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>శ్రీకాంత్ మరియు లక్ష్మి జయశ్రీ వివాహ ఆహ్వాన పత్రిక</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Prata&family=Montserrat:wght@300;400;600;700&family=Tiro+Telugu&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --lavender: #e6e6fa;
+        --light: #f9f5ff;
+        --deep: #d1ef2a;
+        --gold: #d4af37;
+        --dark: #2b2b2b;
+        --purple: #5a2a83;
+      }
+
+      body {
+        font-family: "Tiro Telugu", serif;
+        background: linear-gradient(135deg, #f9f5ff, #e6e6fa, #d8c4f0), url("https://www.transparenttextures.com/patterns/white-diamond.png");
+        background-blend-mode: overlay;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        color: var(--purple);
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Falling Animation */
+      .falling {
+        position: fixed;
+        top: -10%;
+        animation: fall linear forwards;
+        z-index: 1001;
+        pointer-events: none;
+      }
+      @keyframes fall {
+        to { transform: translateY(110vh) rotate(360deg); }
+      }
+
+      /* Borders & Layout */
+      .royal-border {
+        position: fixed;
+        inset: 10px;
+        border: 1px solid var(--gold);
+        pointer-events: none;
+        z-index: 998;
+      }
+
+      /* Intro Seal Screen */
+      #intro-screen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #5a2a83, #3a1a53);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 1s ease;
+        color: white;
+      }
+
+      .seal-btn {
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, var(--gold), #b8860b);
+        border-radius: 50%;
+        border: 3px solid #fff;
+        color: white;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        animation: pulseSeal 2s infinite;
+      }
+
+      @keyframes pulseSeal {
+        0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
+        50% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+      }
+
+      /* Main Sections */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("img.jpeg") center/cover no-repeat fixed;
+      }
+
+      .main-invite-card {
+        background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url("ram.jpeg") center/cover no-repeat;
+        border: 2px solid var(--purple);
+        border-radius: 20px;
+      }
+
+      .count-box {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--gold);
+        border-radius: 15px;
+        padding: 15px;
+        min-width: 85px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      /* Reveal Animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--gold);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        z-index: 1000;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="royal-border"></div>
+
+    <div id="intro-screen">
+      <h3 class="vibes-font text-gold mb-4 fs-1">శుభం భూయాత్</h3>
+      <div class="seal-btn" id="openInvitation">
+        <i class="bi bi-envelope-heart-fill"></i>
+      </div>
+      <p class="mt-4 montserrat-font fw-bold" style="letter-spacing: 2px">TAP TO OPEN / ఆహ్వానం</p>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mp3" />
+    </audio>
+    <button class="music-btn" id="musicToggle" style="display: none">
+      <i class="bi bi-music-note-beamed"></i>
+    </button>
+
+    <div id="main-content" style="display:none; opacity:0; transition: opacity 1.5s ease;">
+      <section class="hero px-3">
+        <div class="mantra mb-3" style="color: #ffd700; font-weight: 600; letter-spacing: 2px; font-size: 1.5rem;">
+          శ్రీ రాజరాజేశ్వరీ ప్రసన్న
+        </div>
+
+        <h1 class="my-3 reveal" style="color: #ffffff; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9); font-size: clamp(2.5rem, 8vw, 5rem);">
+          శ్రీకాంత్ <br />
+          <span style="font-size: 20px; color: #ffcc70; font-family: 'Cinzel', serif;">వివాహ</span><br />
+          లక్ష్మి జయశ్రీ
+        </h1>
+
+        <p class="cinzel-font mt-4 fs-4 fw-bold reveal" style="color: #f5c542; letter-spacing: 4px; text-shadow: 2px 2px 5px #000;">
+          శుభ పరిణయం
+        </p>
+
+        <p class="montserrat-font fw-bold fs-5 reveal" style="color: #e0e0e0; text-shadow: 1px 1px 3px #000;">
+          ఏప్రిల్ 29, 2026 • పెంటకోట
+        </p>
+      </section>
+
+      <section class="container text-center px-3 reveal my-5">
+        <div style="max-width: 600px; margin: auto; border: 5px double var(--gold); padding: 10px; background: #fff;">
+          <img src="ham.jpeg" alt="Couple" class="img-fluid" />
+        </div>
+      </section>
+
+      <section class="container my-5 px-3 reveal">
+        <div class="main-invite-card text-center p-4 p-md-5">
+          <div class="d-inline-block p-3 rounded-4 shadow-sm mb-4" style="background: #fff8f0">
+            <div style="font-size: 1.3rem; color: #8b0000; font-weight: bold;">|| ఓం శ్రీ గణేశాయ నమః ||</div>
+            <img src="https://m.media-amazon.com/images/I/61QpYCLrqlL._AC_UF894,1000_QL80_.jpg" alt="Ganesh" class="img-fluid rounded-circle mt-3" style="max-width: 100px; border: 2px solid #4b2e83; padding: 3px;" />
+          </div>
+
+          <h2 class="fw-bold mt-2 mb-2" style="font-size: clamp(2rem, 5vw, 3rem); color: #b8860b;">వివాహ ఆహ్వాన పత్రిక 🌸</h2>
+          <p class="fs-5 mb-5 fw-bold" style="color: #800000;">శ్రీరస్తు | శుభమస్తు | అవిఘ్నమస్తు</p>
+
+          <h3 class="cinzel-font fw-bold mb-2" style="color: #4b2e83; letter-spacing: 2px;">Pellikoduku</h3>
+          <h2 class="fs-1" style="color: #f77b0e;"><b>చి|| శ్రీకాంత్</b></h2>
+          <p class="fs-6 mb-4" style="color: #555;">(కోవిరి బాబ్జీ మరియు దేవి దంపతుల జ్యేష్ఠ పుత్రుడు)</p>
+
+          <div class="text-center my-3"><img src="band.gif" alt="celebration" style="width: 80px;" /></div>
+
+          <h3 class="cinzel-font fw-bold mb-2" style="color: #4b2e83; letter-spacing: 2px;">Pellikuturu</h3>
+          <h2 class="fs-1" style="color: #f77b0e;"><b>చి|| లక్ష్మి జయశ్రీ</b></h2>
+          <p class="fs-6 mb-4" style="color: #555;">(మోహంతి అప్పలరాజు మరియు చిట్టమ్మ దంపతుల పుత్రిక)</p>
+
+          <div class="my-4 mx-auto" style="height: 2px; width: 100px; background: #4b2e83;"></div>
+
+          <h3 class="fw-bold mt-4" style="color: #4b2e83;">సుముహూర్తం</h3>
+          <p class="fs-5 mb-4">
+            <b>ఏప్రిల్ 29, 2026 బుధవారం</b> <br />
+            <span class="fs-3" style="color: #daa520;">రాత్రి గం|| 11:02 నిమిషాలకు</span> <br />
+            <span class="text-muted small">(హస్తా నక్షత్ర యుక్త ధనుర్లగ్న పుష్కరాంశమున)</span>
+          </p>
+
+          <p class="mt-4 fst-italic fw-bold px-md-5" style="color: #4b2e83; line-height: 1.8;">
+            "భగవంతుని కృపతో, పెద్దల ఆశీస్సులతో జరగబోయే ఈ పవిత్ర వివాహ బంధానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము. మీ రాకయే మాకు శ్రీరామరక్ష."
+          </p>
+        </div>
+      </section>
+
+      <section class="container my-5 py-3 text-center reveal">
+        <h2 class="cinzel-font text-gold mb-4 fs-2 fw-bold">కళ్యాణ ఘడియలు</h2>
+        <div class="d-flex justify-content-center gap-2 gap-md-4 flex-wrap">
+          <div class="count-box"><span id="d" class="fs-1 fw-bold">00</span><br /><small>రోజులు</small></div>
+          <div class="count-box"><span id="h" class="fs-1 fw-bold">00</span><br /><small>గంటలు</small></div>
+          <div class="count-box"><span id="m" class="fs-1 fw-bold">00</span><br /><small>నిమిషాలు</small></div>
+          <div class="count-box"><span id="s" class="fs-1 fw-bold">00</span><br /><small>సెకన్లు</small></div>
+        </div>
+      </section>
+
+      <section class="container my-5 px-3 reveal">
+        <div class="row justify-content-center g-4">
+          <div class="col-12 col-md-5">
+            <div class="p-4 h-100 text-center shadow-sm" style="background: #fff; border: 2px solid var(--gold); border-radius: 20px;">
+              <h2 class="text-dark">నిశ్చితార్థం & విందు</h2>
+              <h4 style="color: #b497d6">శ్రీకాంత్ & లక్ష్మి జయశ్రీ</h4>
+              <p class="mt-3"><b>ఏప్రిల్ 29, 2026</b><br />రాజయ్యపేట గ్రామం</p>
+              <hr />
+              <p>మధ్యాహ్నం 12:00 గంటల నుండి భోజనము కలదు.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-5">
+            <div class="p-4 h-100 text-center shadow-sm" style="background: #fff; border: 2px solid var(--gold); border-radius: 20px;">
+              <h2 class="text-dark">వివాహ మహోత్సవం</h2>
+              <h4 style="color: #b497d6">కళ్యాణ వేదిక</h4>
+              <p class="mt-3"><b>ఏప్రిల్ 29, 2026</b><br />పెంటకోట గ్రామం</p>
+              <hr />
+              <p>రిసెప్షన్: రాత్రి 7:00 గంటల నుండి.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container text-center px-3 my-5 reveal">
+        <h3 class="text-gold mb-3">వేదిక మార్గదర్శిని</h3>
+        <iframe src="https://www.google.com/maps?q=17.298044,82.610517&z=17&t=k&output=embed" width="100%" height="350" style="border: 0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+      </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      const introScreen = document.getElementById("intro-screen");
+      const mainContent = document.getElementById("main-content");
+      const openBtn = document.getElementById("openInvitation");
+      const bgMusic = document.getElementById("bg-music");
+      const musicBtn = document.getElementById("musicToggle");
+      let isPlaying = false;
+
+      // Intro Logic
+      openBtn.addEventListener("click", () => {
+        introScreen.style.opacity = "0";
+        setTimeout(() => {
+          introScreen.style.display = "none";
+          mainContent.style.display = "block";
+          setTimeout(() => { mainContent.style.opacity = "1"; }, 50);
+          musicBtn.style.display = "block";
+          bgMusic.play().then(() => { isPlaying = true; }).catch(e => console.log("Audio blocked"));
+          reveal();
+        }, 800);
+      });
+
+      // Music Toggle
+      musicBtn.addEventListener("click", () => {
+        if (isPlaying) {
+          bgMusic.pause();
+          musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        } else {
+          bgMusic.play();
+          musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Scroll Reveal
+      function reveal() {
+        let reveals = document.querySelectorAll(".reveal");
+        for (let i = 0; i < reveals.length; i++) {
+          let windowHeight = window.innerHeight;
+          let elementTop = reveals[i].getBoundingClientRect().top;
+          if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
+        }
+      }
+      window.addEventListener("scroll", reveal);
+
+      // Countdown
+      const weddingDate = new Date("April 29, 2026 23:02:00").getTime();
+      setInterval(() => {
+        let now = new Date().getTime();
+        let diff = weddingDate - now;
+        if (diff > 0) {
+          document.getElementById("d").innerText = Math.floor(diff / 86400000).toString().padStart(2, '0');
+          document.getElementById("h").innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+          document.getElementById("m").innerText = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+          document.getElementById("s").innerText = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+        }
+      }, 1000);
+
+      // Flower Petals
+      setInterval(() => {
+        let petal = document.createElement("div");
+        petal.className = "falling";
+        petal.innerText = "🌸";
+        petal.style.left = Math.random() * 100 + "vw";
+        petal.style.fontSize = Math.random() * 20 + 10 + "px";
+        petal.style.animationDuration = Math.random() * 5 + 5 + "s";
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 8000);
+      }, 400);
+    </script>
+  </body>
+</html>
