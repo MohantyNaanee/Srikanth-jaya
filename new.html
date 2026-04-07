@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Srikanth weds Lakshmi Jayashree</title>
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="apple-icon-180x180.png"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Great+Vibes&family=Prata&family=Montserrat:wght@300;400;600;700&family=Tiro+Telugu&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .falling {
+        position: fixed;
+        top: -10%;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(360deg);
+        }
+      }
+      :root {
+        --lavender: #e6e6fa;
+        --light: #f9f5ff;
+        --deep: #d1ef2a;
+        --gold: #d4af37;
+        --dark: #2b2b2b;
+        --purple: #5a2a83;
+      }
+
+      body {
+        font-family: "Prata", serif;
+        background:
+          linear-gradient(135deg, #f9f5ff, #e6e6fa, #d8c4f0),
+          url("https://www.transparenttextures.com/patterns/white-diamond.png");
+        background-blend-mode: overlay;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        color: var(--purple);
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Typography */
+      h1,
+      h2,
+      h3,
+      .cinzel-font {
+        font-family: "Cinzel", serif;
+      }
+      .vibes-font {
+        font-family: "Great Vibes", cursive;
+      }
+      .montserrat-font {
+        font-family: "Montserrat", sans-serif;
+      }
+      .text-gold {
+        color: var(--gold);
+      }
+
+      /* Visual Framing */
+      .royal-border {
+        position: fixed;
+        inset: 10px;
+        border: 1px solid var(--gold);
+        pointer-events: none;
+        z-index: 998;
+      }
+      @media (min-width: 768px) {
+        .royal-border {
+          inset: 15px;
+        }
+      }
+
+      .cursor {
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 999;
+        display: none;
+      }
+      @media (min-width: 992px) {
+        .cursor {
+          display: block;
+        }
+      }
+
+      /* --- Intro Seal Screen --- */
+      #intro-screen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #5a2a83, #3a1a53);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition:
+          opacity 1s ease,
+          visibility 1s ease;
+        color: white;
+      }
+
+      .seal-btn {
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, var(--gold), #b8860b);
+        border-radius: 50%;
+        border: 3px solid #fff;
+        color: white;
+        font-size: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        animation: pulseSeal 2s infinite;
+        transition: transform 0.3s;
+      }
+      .seal-btn:hover {
+        transform: scale(1.1);
+      }
+
+      @keyframes pulseSeal {
+        0% {
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+        }
+        100% {
+          box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+      }
+
+      #main-content {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 1.5s ease;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background:
+          linear-gradient(rgba(230, 230, 250, 0.3), rgba(230, 230, 250, 0.3)),
+          url("img.jpeg") center/cover no-repeat fixed;
+      }
+
+      .mantra {
+        font-family: "Tiro Telugu", serif;
+        font-size: clamp(1.2rem, 4vw, 2rem);
+        color: #fff;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      }
+
+      .names {
+        font-size: clamp(3rem, 8vw, 6rem);
+        color: var(--deep);
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+        line-height: 1.2;
+        padding: 0 15px;
+      }
+
+      /* Cards & Frames */
+      .frame {
+        max-width: 700px;
+        margin: 40px auto;
+        border: 2px solid var(--gold);
+        padding: 10px;
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-box {
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .main-invite-card {
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),
+          url("ram.jpeg") center/cover no-repeat;
+        border: 2px solid var(--purple);
+      }
+
+      .count-box {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--gold);
+        border-radius: 15px;
+        padding: 20px 10px;
+        min-width: 90px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      iframe {
+        border-radius: 15px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Floating Music Button */
+      .music-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--gold);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        z-index: 1000;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s;
+      }
+      .music-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* Scroll Animation Classes */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="royal-border"></div>
+    <div class="cursor"></div>
+
+    <div id="intro-screen">
+      <h3 class="vibes-font text-gold mb-4 fs-1">You're Invited</h3>
+      <div class="seal-btn" id="openInvitation">
+        <i class="bi bi-envelope-heart-fill"></i>
+      </div>
+      <p class="mt-4 montserrat-font fw-bold" style="letter-spacing: 2px">
+        TAP TO OPEN
+      </p>
+    </div>
+
+    <audio id="bg-music" loop>
+      <source src="music.mp3" type="audio/mp3" />
+    </audio>
+    <button class="music-btn" id="musicToggle" style="display: none">
+      <i class="bi bi-music-note-beamed"></i>
+    </button>
+
+    <div id="main-content">
+      <section class="hero px-3" style="text-align: center">
+        <div
+          class="mantra mb-3"
+          style="color: #ffd700; font-weight: 600; letter-spacing: 2px"
+        >
+          శ్రీ రాజరాజేశ్వరీ ప్రసన్న
+        </div>
+
+        <h1
+          class="names vibes-font my-3 reveal"
+          style="color: #ffffff; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)"
+        >
+          Srikanth <br />
+          <span style="font-size: 18px; color: #ffcc70">weds</span><br />
+          Lakshmi Jayashree
+        </h1>
+
+        <p
+          class="cinzel-font mt-4 fs-4 fw-bold reveal"
+          style="
+            color: #f5c542;
+            letter-spacing: 4px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+          "
+        >
+          THE DIVINE UNION
+        </p>
+
+        <p
+          class="montserrat-font fw-bold fs-5 reveal"
+          style="color: #e0e0e0; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8)"
+        >
+          April 29, 2026 • Pentakota
+        </p>
+
+        <div class="mt-4 reveal">
+          <i
+            class="bi bi-chevron-double-down text-white fs-1"
+            style="animation: pulseSeal 2s infinite"
+          ></i>
+        </div>
+      </section>
+
+      <section class="container text-center px-3 reveal">
+        <div class="frame">
+          <img src="ham.jpeg" alt="Couple Image" class="img-fluid rounded" />
+        </div>
+      </section>
+
+      <section class="container my-5 px-3 reveal">
+  <div
+    class="card-box main-invite-card text-center p-4 p-md-5 montserrat-font fw-bold"
+    style="color: #4b2e83;"
+  >
+    <div
+      class="d-inline-block p-3 p-md-4 rounded-4 shadow-sm"
+      style="background: #fff8f0"
+    >
+      <div
+        class="cinzel-font fw-bold"
+        style="
+          font-size: clamp(1.2rem, 3vw, 1.8rem);
+          color: #8b0000; /* dark red for mantra */
+        "
+      >
+        || Om Shree Ganeshaya Namah ||
+      </div>
+      <img
+        src="https://m.media-amazon.com/images/I/61QpYCLrqlL._AC_UF894,1000_QL80_.jpg"
+        alt="Ganesh"
+        class="img-fluid rounded-circle mt-3"
+        style="
+          max-width: 110px;
+          border: 2px solid #4b2e83; /* deep purple border */
+          padding: 4px;
+        "
+      />
+    </div>
+
+    <h2
+      class="vibes-font fw-bold mt-5 mb-2"
+      style="font-size: clamp(2.5rem, 6vw, 3.5rem); color: #b8860b;" /* gold */
+    >
+      Wedding Invitation 🌸
+    </h2>
+    <p class="fs-5 mb-5 fw-bold" style="color: #800000;"> <!-- maroon -->
+      Srirasthu | Shubhamasthu | Avighnamasthu
+    </p>
+
+    <h3 class="cinzel-font fw-bold mb-2" style="color: #4b2e83;">
+      Pellikoduku (Groom)
+    </h3>
+    <h2 class="vibes-font fs-1" style="color: #f77b0e;"><b>Srikanth</h2>
+    <p class="fs-6 mb-4 fw-bold" style="color: #4b2e83;">
+      <span class="fw-normal" style="color: #555555;">
+        (Eldest son of Mr. Koviri Babji & Mrs. Devi)
+      </span>
+    </p>
+
+    <div style="text-align: center">
+      <img
+        src="band.gif"
+        alt="Celebration Animation"
+        style="
+          width: 100px;
+          height: 60px;
+          border-radius: 50% / 30%;
+          object-fit: cover;
+          filter: grayscale(100%);
+        "
+      />
+    </div>
+
+    <h3 class="cinzel-font fw-bold mt-4 mb-2" style="color: #4b2e83;">
+      Pellikuturu (Bride)
+    </h3>
+    <h2 class="vibes-font fs-1" style="color: #f77b0e;"><b>Lakshmi Jayashree</h2>
+    <p class="fs-6 mb-4 fw-bold" style="color: #4b2e83;">
+      <span class="fw-normal" style="color: #555555;">
+        (Daughter of Mr. Mohanty Appalaraju & Mrs. Chittamma)
+      </span>
+    </p>
+
+    <div
+      class="my-4 mx-auto"
+      style="height: 2px; width: 80px; background: #4b2e83;"
+    ></div>
+
+    <h3 class="cinzel-font fw-bold mt-4" style="color: #4b2e83;">Sumuhurtham</h3>
+    <p class="fs-6 mb-4 fw-bold" style="color: #4b2e83;">
+      Wednesday, April 29, 2026 <br />
+      <span class="text-gold fs-4" style="color: #daa520;">At 11:02 PM</span> <br />
+      <span class="fw-normal text-muted" style="color: #555555;">
+        (Under the Hasta Nakshatra in Sagittarius Lagna)
+      </span>
+    </p>
+
+    <p
+      class="mt-4 fst-italic fw-bold"
+      style="
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        color: #4b2e83;
+      "
+    >
+      "We pray that you will shower your blessings with a heart as cool as
+      jasmine and bless Lakshmi Jayashree & Srikanth as they embark on
+      this divine journey together."
+    </p>
+  </div>
+</section>
+      <section class="container my-5 py-3 text-center reveal">
+        <h2 class="cinzel-font text-gold mb-4 fs-2 fw-bold">
+          The Auspicious Moment
+        </h2>
+        <div class="d-flex justify-content-center gap-2 gap-md-4 flex-wrap">
+          <div class="count-box">
+            <span id="d" class="cinzel-font fs-1 text-purple fw-bold">00</span
+            ><br /><span class="montserrat-font small fw-bold">Days</span>
+          </div>
+          <div class="count-box">
+            <span id="h" class="cinzel-font fs-1 text-purple fw-bold">00</span
+            ><br /><span class="montserrat-font small fw-bold">Hours</span>
+          </div>
+          <div class="count-box">
+            <span id="m" class="cinzel-font fs-1 text-purple fw-bold">00</span
+            ><br /><span class="montserrat-font small fw-bold">Mins</span>
+          </div>
+          <div class="count-box">
+            <span id="s" class="cinzel-font fs-1 text-purple fw-bold">00</span
+            ><br /><span class="montserrat-font small fw-bold">Secs</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="container my-5 px-3 reveal">
+        <div class="row justify-content-center g-4">
+          <div class="col-12 col-md-6 col-lg-5">
+            <div
+              class="card-box text-center p-4 h-100 montserrat-font"
+              style="
+                background: rgba(255, 255, 255, 0.9);
+                border: 2px solid var(--gold);
+              "
+            >
+              <h2 class="title vibes-font mb-4 fs-1 text-dark">Engagement</h2>
+              <h3 class="vibes-font fs-2" style="color: #b497d6">
+                Srikanth weds Lakshmi Jayashree 🌸
+              </h3>
+              <p class="fs-6 mt-3 fw-medium">April 29, 2026<br />Rajayyapeta</p>
+              <hr style="color: var(--gold)" />
+              <h4 class="cinzel-font fs-5 fw-bold" style="color: #b497d6">
+                Ceremony & Venue
+              </h4>
+              <p class="mb-0">
+                Venue: Rajayyapeta Village, Anakapalli, A.P.<br />
+                <strong>Reception: 12:00 PM onwards</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-lg-5">
+            <div
+              class="card-box text-center p-4 h-100 montserrat-font"
+              style="
+                background: rgba(255, 255, 255, 0.9);
+                border: 2px solid var(--gold);
+              "
+            >
+              <h2 class="title vibes-font mb-4 fs-1 text-dark">Wedding</h2>
+              <h3 class="vibes-font fs-2" style="color: #b497d6">
+                Lakshmi Jayashree weds Srikanth 🌸
+              </h3>
+              <p class="fs-6 mt-3 fw-medium">April 29, 2026<br />Pentakota</p>
+              <hr style="color: var(--gold)" />
+              <h4 class="cinzel-font fs-5 fw-bold" style="color: #b497d6">
+                Ceremony & Venue
+              </h4>
+              <p class="mb-0">
+                Venue: Pentakota Village, Anakapalli, A.P.<br />
+                <strong>Reception: 7:00 PM onwards</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container text-center px-3 my-5 reveal">
+        <div
+          class="card-box p-4"
+          style="
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px dashed var(--gold);
+          "
+        >
+         <section style="text-align:center; padding: 60px 20px; background: #ffffff;">
+  <div style="
+    max-width: 750px;
+    margin: auto;
+    padding: 30px 25px;
+    border: 1px solid #f1e4b3;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background: #fffdf7;
+  ">
+
+    <h2
+      class="cinzel-font fw-bold mb-3"
+      style="
+        color: #b8962e;
+        letter-spacing: 4px;
+        font-size: 34px;
+        text-transform: uppercase;
+      "
+    >
+      With Love & Blessings
+    </h2>
+
+    <div style="
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(to right, #e9d58a, #b8962e);
+      margin: 15px auto 25px;
+    "></div>
+
+    <p
+      style="
+        font-size: 18px;
+        line-height: 2;
+        color: #555;
+      "
+    >
+      With the divine grace of God and the blessings of our beloved
+      elders, we warmly invite you to join us in celebrating this sacred
+      union.
+      <br /><br />
+
+      Your presence will add joy, love, and meaning to this special
+      occasion.
+      <br /><br />
+
+      <span
+        style="
+          display: inline-block;
+          margin-top: 15px;
+          padding: 10px 22px;
+          border-radius: 30px;
+          background: linear-gradient(90deg, #9333ea, #c084fc);
+          color: #fff;
+          font-weight: 600;
+          letter-spacing: 1px;
+          box-shadow: 0 4px 10px rgba(147, 51, 234, 0.3);
+        "
+      >
+        We welcome you with all our hearts 💜
+      </span>
+    </p>
+
+  </div>
+</section>
+      <section class="container text-center px-3 my-4 reveal">
+        <iframe
+          src="https://www.google.com/maps?q=17.298044,82.610517&z=17&t=k&output=embed"
+          width="100%"
+          height="350"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+        ></iframe>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // 1. Custom Cursor Logic (Desktops only)
+      document.addEventListener("mousemove", (e) => {
+        const cursor = document.querySelector(".cursor");
+        if (cursor) {
+          cursor.style.left = e.clientX + "px";
+          cursor.style.top = e.clientY + "px";
+        }
+      });
+
+      // 2. DOM Elements for Audio & Intro
+      const introScreen = document.getElementById("intro-screen");
+      const mainContent = document.getElementById("main-content");
+      const openBtn = document.getElementById("openInvitation");
+      const bgMusic = document.getElementById("bg-music");
+      const musicBtn = document.getElementById("musicToggle");
+      let isPlaying = false;
+
+      // 3. Handle "Tap to Open" (Removes intro, shows content, plays music)
+      openBtn.addEventListener("click", () => {
+        // Fade out intro
+        introScreen.style.opacity = "0";
+        setTimeout(() => {
+          introScreen.style.display = "none";
+          // Fade in main content
+          mainContent.style.visibility = "visible";
+          mainContent.style.opacity = "1";
+          musicBtn.style.display = "block";
+
+          // Play Music safely
+          bgMusic
+            .play()
+            .then(() => {
+              isPlaying = true;
+              musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+            })
+            .catch((e) => console.log("Audio blocked by browser policy"));
+        }, 800);
+      });
+
+      // 4. Music Toggle Button
+      musicBtn.addEventListener("click", () => {
+        if (isPlaying) {
+          bgMusic.pause();
+          musicBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        } else {
+          bgMusic.play();
+          musicBtn.innerHTML = '<i class="bi bi-music-note-beamed"></i>';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // 5. Scroll Reveal Animation
+      function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+          var windowHeight = window.innerHeight;
+          var elementTop = reveals[i].getBoundingClientRect().top;
+          var elementVisible = 100;
+          if (elementTop < windowHeight - elementVisible) {
+            reveals[i].classList.add("active");
+          }
+        }
+      }
+      window.addEventListener("scroll", reveal);
+      reveal(); // Trigger once on load
+
+      // 6. Countdown Timer
+      const date = new Date("April 29, 2026 23:02:00").getTime();
+      setInterval(() => {
+        let now = new Date().getTime();
+        let g = date - now;
+
+        if (g > 0) {
+          document.getElementById("d").innerText = Math.floor(g / 86400000)
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("h").innerText = Math.floor(
+            (g % 86400000) / 3600000,
+          )
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("m").innerText = Math.floor(
+            (g % 3600000) / 60000,
+          )
+            .toString()
+            .padStart(2, "0");
+          document.getElementById("s").innerText = Math.floor(
+            (g % 60000) / 1000,
+          )
+            .toString()
+            .padStart(2, "0");
+        } else {
+          document.getElementById("d").innerText = "00";
+          document.getElementById("h").innerText = "00";
+          document.getElementById("m").innerText = "00";
+          document.getElementById("s").innerText = "00";
+        }
+      }, 1000);
+      setInterval(() => {
+        let f = document.createElement("div");
+        f.className = "falling";
+        f.innerText = "🌸";
+        f.style.left = Math.random() * 100 + "vw";
+        f.style.fontSize = Math.random() * 20 + 10 + "px";
+        f.style.animationDuration = Math.random() * 5 + 5 + "s";
+        document.body.appendChild(f);
+        setTimeout(() => f.remove(), 8000);
+      }, 400);
+    </script>
+  </body>
+</html>
